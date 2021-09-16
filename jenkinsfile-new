@@ -1,0 +1,37 @@
+
+node{
+    def mavenHome = tool name: 'maven 3.8.2'
+    
+    stage('1clone'){
+        git credentialsId: 'GitHub-credentials', url: 'https://github.com/Darkie0503/maven-web-app'
+    }
+    stage('2mavenBuild'){
+        sh "${mavenHome}/bin/mvn clean package"
+    }
+    stage('3codeQuality'){
+        sh "${mavenHome}/bin/mvn sonar:sonar"
+    }
+    stage('4uploadArtifacts'){
+        sh "${mavenHome}/bin/mvn deploy"   
+    }
+    stage('5DeployUAT'){
+        deploy adapters: [tomcat9(credentialsId: 'tcat-upt-cred', path: '', url: 'http://3.131.13.140:8080/')], contextPath: null, war: 'target/*.war'
+    }
+    stage('6Email notification'){
+        emailext body: '''Hello folks,
+
+this is the final bulds for the black friday project
+
+Regards
+
+Heinrich''', subject: 'Build result', to: 'developers'
+    }
+    stage('7APPROVAL'){
+        timeout(time:10, unit: 'HOURS' ){
+            input message: 'Please verify and approve'
+        }
+    }
+    stage('8Deploy to prod'){
+     deploy adapters: [tomcat9(credentialsId: 'tcat-upt-cred', path: '', url: 'http://3.131.13.140:8080/')], contextPath: null, war: 'target/*.war'   
+    }
+   }
