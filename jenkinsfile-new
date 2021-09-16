@@ -8,6 +8,8 @@ node{
     stage('2mavenBuild'){
         sh "${mavenHome}/bin/mvn clean package"
     }
+    
+   /*
     stage('3codeQuality'){
         sh "${mavenHome}/bin/mvn sonar:sonar"
     }
@@ -34,4 +36,5 @@ Heinrich''', subject: 'Build result', to: 'developers'
     stage('8Deploy to prod'){
      deploy adapters: [tomcat9(credentialsId: 'tcat-upt-cred', path: '', url: 'http://3.131.13.140:8080/')], contextPath: null, war: 'target/*.war'   
     }
+    */
    }
