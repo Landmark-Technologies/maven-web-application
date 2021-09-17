@@ -9,6 +9,7 @@ node {
   stage('3-CodeQuality') {
      sh "${mavenHome}/bin/mvn sonar:sonar"
   }
+  /*
   stage('4-UploadArticats') {
     sh "${mavenHome}/bin/mvn deploy"
   }
@@ -32,3 +33,4 @@ Landmark Tecxhnologies''', subject: 'Build status', to: 'developers'
       deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials2', path: '', url: 'http://172.31.17.142:8080/')], contextPath: null, war: 'target/*war'
   }
   }
+ */
