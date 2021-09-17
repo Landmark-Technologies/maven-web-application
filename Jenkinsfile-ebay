@@ -6,11 +6,11 @@ node {
   stage('2-mavenBuild') {
      sh "${mavenHome}/bin/mvn clean package"
   }
+  /*
   stage('3-CodeQuality') {
      sh "${mavenHome}/bin/mvn sonar:sonar"
   }
-  /*
-  stage('4-UploadArticats') {
+   stage('4-UploadArticats') {
     sh "${mavenHome}/bin/mvn deploy"
   }
   stage('5-Deploy-UAT') {
