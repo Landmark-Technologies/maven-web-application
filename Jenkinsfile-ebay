@@ -10,6 +10,7 @@ node{
   stage('3CodeQuality') {
      sh "${mavenHome}/bin/mvn sonar:sonar"
   }
+  /*
   stage('4uploadArtifacts') {
      sh "${mavenHome}/bin/mvn deploy"
   }
@@ -33,4 +34,5 @@ Ann Woghiren''', subject: 'Build status', to: 'Developers'
   stage('Prod-Deploy') {
      deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://3.96.66.17:8080/')], contextPath: null, war: 'target/*war'
   }
+  */
 }
