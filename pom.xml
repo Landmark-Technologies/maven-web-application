@@ -82,7 +82,7 @@
 			<version>${spring.version}</version>
 		</dependency>
 		
-		<!-- provided dependencies -->
+		<!-- provided dependencies 
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -90,7 +90,7 @@
 			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
-		
+		-->
 	</dependencies>
 	
 	<distributionManagement>
