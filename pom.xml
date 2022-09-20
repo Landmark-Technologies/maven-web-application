@@ -97,13 +97,13 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>Landmark Technologies Releases Nexus Repository</name>
-	      <url>http://3.94.161.228:8081/repository/fred-release/</url>
+	      <url>http://34.234.63.187:8081/repository/fred-release/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Landmark Technologies Snapshot Nexus Repository </name>
-	      <url>http://3.94.161.228:8081/repository/fred-SNAPSHOT/</url>
+	      <url>http://34.234.63.187:8081/repository/fred-SNAPSHOT/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
