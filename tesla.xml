@@ -97,13 +97,13 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>Landmark Technologies Releases Nexus Repository</name>
-	      <url>http://54.151.33.241:8081/repository/apple-frontend/</url>
+	      <url>http://54.151.33.241:8081/repository/test-uat-release/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Landmark Technologies Snapshot Nexus Repository </name>
-	      <url>http://54.151.33.241:8081/repository/apple-snapshot/</url>
+	      <url>http://54.151.33.241:8081/repository/test-uat-snapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
