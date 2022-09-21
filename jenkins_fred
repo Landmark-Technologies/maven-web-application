@@ -1,0 +1,35 @@
+node{
+	def mavenHome = tool name: 'maven3.8.6'
+	stage('1cloneCode'){
+	git "https://github.com/wilfredokoro/maven-web-application"
+	//sh "git clone https://github.com/wilfredokoro/maven-web-application"
+	}
+	stage('2Test&Build'){
+	sh "${mavenHome}/bin/mvn clean package"
+	}
+	stage('3codeQuality'){
+	sh "${mavenHome}/bin/mvn sonar:sonar"
+	}
+	stage('4loadArtifacts'){
+	sh "${mavenHome}/bin/mvn clean deploy"
+	}
+	stage('5deploytoUAT'){
+	sh "echo deploy to UAT"
+	deploy adapters: [tomcat9(credentialsId: 'Jenkinsgg', path: '', url: 'http://107.21.71.211:8080/')], contextPath: null, war: 'target/*war'
+	}	
+	stage('6approvalGate'){
+    sh "echo 'ready for review' "
+    timeout(time:5, unit:'DAYS') {
+    input message: 'Application ready for deployment, Please review and approve'
+      }
+  }
+    stage('7deploy2Prod'){
+    sh "sleep 50"
+    deploy adapters: [tomcat9(credentialsId: 'Jenkinsgg', path: '', url: 'http://107.21.71.211:8080/')], contextPath: null, war: 'target/*war'
+  }
+    stage('8emailNotification'){
+  emailext body: '''Hi All,
+  Landmark Tech''', recipientProviders: [developers(), buildUser()], subject: 'Job Build Status', to: 'wilfred.okoro20@gmail.com'
+  }
+}
+
