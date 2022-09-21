@@ -109,7 +109,7 @@
 	</distributionManagement>
 	
 	<build>
-		<finalName>John-web-app</finalName>
+		<finalName>Magnus-web-app</finalName>
 		
 		<plugins>
 			<plugin>
