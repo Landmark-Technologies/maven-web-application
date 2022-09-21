@@ -24,6 +24,7 @@ node{
       }
   }
     stage('7deploy2Prod'){
+    sh "sleep 50"
     deploy adapters: [tomcat9(credentialsId: 'Jenkinsgg', path: '', url: 'http://107.21.71.211:8080/')], contextPath: null, war: 'target/*war'
   }
     stage('8emailNotification'){
