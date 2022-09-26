@@ -53,7 +53,7 @@ Landmark
     } 
     failure{
       emailext body: '''Hey guys
-Build failed. Please resolve issues.
+Build failed. Please resolve issues asap.
 
 Thanks
 Landmark 
