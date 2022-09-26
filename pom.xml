@@ -99,6 +99,7 @@
 	      <name>Landmark Technologies Releases Nexus Repository</name>
 	      <url>http://75.101.151.71:8081/repository/telsa-fe-releases/</url>=======
 	    </repository>
+		
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Landmark Technologies Snapshot Nexus Repository </name>
