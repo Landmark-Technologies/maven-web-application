@@ -1,0 +1,37 @@
+pipeline{
+    agent any
+    tools{
+        maven "maven3.8.6"
+    }
+    stages{
+        stage('codeCloning'){
+            steps{
+                git credentialsId: 'githubcred', url: 'https://github.com/Olakenny/maven-web-application.git'
+            }
+        }
+        stage('test&build'){
+            steps{
+                //sh "testing and building the code with maven"
+                sh "mvn clean package"
+            }
+        }
+        /*
+        stage('codeQualityAnalysis'){
+            steps{
+                sh "mvn sonar:sonar"
+            }
+        }
+        stage('uploadToNexus'){
+            steps{
+                sh "mvn deploy"
+            }
+        }
+        */
+        stage('deployToProd'){
+            steps{
+                deploy adapters: [tomcat8(credentialsId: 'tomcat2-credential', path: '', url: 'http://34.227.150.229:8080/')], contextPath: null, war: 'target/*war'
+            }
+        }
+        
+    }
+}

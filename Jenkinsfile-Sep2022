@@ -1,0 +1,33 @@
+node{
+    def mavenHome = tool name : 'maven3.8.6'
+    stage('gitclone'){
+        git "https://github.com/Olakenny/maven-web-application.git"
+    }
+    stage('test&build'){
+        sh "${mavenHome}/bin/mvn clean package"
+    }
+   stage('codeQuality'){
+        sh "${mavenHome}/bin/mvn sonar:sonar"
+    }
+   stage('uploadtoNexus'){
+        sh "${mavenHome}/bin/mvn deploy"
+   }
+   stage('deployToUAT'){
+    deploy adapters: [tomcat9(credentialsId: 'tomcat-credential', path: '', url: 'http://54.91.132.14:8080/')], contextPath: null, war: 'target/*war'
+   }
+   stage('approvalGate'){
+    sh "echo ready for deployment"
+    timeout(time:5, unit: 'HOURS'){
+    input message: 'Application is ready for deployemnt, please review and approve'
+    }
+   }
+   stage('deployToProd'){
+    sh "sleep 50"
+    deploy adapters: [tomcat9(credentialsId: 'tomcat-credential', path: '', url: 'http://54.91.132.14:8080/')], contextPath: null, war: 'target/*war'
+   }
+   stage('emailNotificaion'){
+    emailext body: '''Hi All,
+
+    This is a test and build project for tesla''', recipientProviders: [buildUser(), contributor(), developers(), brokenBuildSuspects(), upstreamDevelopers()], subject: 'Build', to: 'elijah.dayo26@gmail.com'
+   }
+}
