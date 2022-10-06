@@ -11,7 +11,7 @@ pipeline{
         }
         stage('test&build'){
             steps{
-                //sh "testing and building the code with maven"
+                //sh "testing & building the code with maven"
                 sh "mvn clean package"
             }
         }
