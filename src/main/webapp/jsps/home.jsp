@@ -14,6 +14,7 @@
 	Landmark Technologies is a software development company. 
 	Class29 will run from June 9, 2022.
 	The shout of the King Jesus is in our midst. HE IS OUR SUCCESS ACCESS KEY</h2>
+<h3 align="center"> SHALOM!</h3>	
 <hr>
 <div style="text-align: center;">
 	<span>
