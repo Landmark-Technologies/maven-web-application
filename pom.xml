@@ -109,7 +109,7 @@
 	</distributionManagement>
 	
 	<build>
-		<finalName>maven-web-app</finalName>
+		<finalName>fintech-web-app</finalName>
 		
 		<plugins>
 			<plugin>
