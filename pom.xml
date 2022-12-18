@@ -105,8 +105,7 @@
 	      <name>maven-snapshots</name>
 	      <url>http://localhost:8081/repository/maven-snapshots/</url>
 	    </snapshotRepository>
-	    
-	</distributionManagement>
+	    </distributionManagement>
 	
 	<build>
 		<finalName>maven-web-app</finalName>
