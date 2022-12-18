@@ -96,14 +96,14 @@
 	<distributionManagement>
 	    <repository>
 	      <id>nexus</id>
-	      <name>Landmark Technologies Releases Nexus Repository</name>
-	      <url> http://10.0.0.139:8081/repository/maven-releases/</url>
+	      <name>maven-releases</name>
+	      <url>http://localhost:8081/repository/maven-releases/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
-	      <name>Landmark Technologies Snapshot Nexus Repository </name>
-	      <url>http://10.0.0.139:8081/repository/maven-snapshot/</url>
+	      <name>maven-snapshots</name>
+	      <url>http://localhost:8081/repository/maven-snapshots/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
