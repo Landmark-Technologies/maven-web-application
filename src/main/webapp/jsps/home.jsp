@@ -38,15 +38,21 @@
 
 <h3> Server Side IP Address </h3><br>
 <h1> 
-<% 
-String ip = "";
-InetAddress inetAddress = InetAddress.getLocalHost();
-ip = inetAddress.getHostAddress();
-out.println("Server Host Name :: "+inetAddress.getHostName()); 
-%>
-<br>
-<% out.println("Server IP Address :: "+ip); %>
-		
+	<%
+		String ip = "";
+		try {
+			InetAddress inetAddress = InetAddress.getLocalHost();
+			ip = inetAddress.getHostAddress();
+			out.println("Server Host Name :: " + inetAddress.getHostName());
+			
+		} catch (Exception e) {
+			out.println("Error: " + e.getMessage());
+		}
+
+	%>
+	<br>
+	<% out.println("Server IP Address :: " + ip);%>
+
 </h1>
 
 
