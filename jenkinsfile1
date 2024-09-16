@@ -1,0 +1,32 @@
+node {
+     
+    def mavenHome = tool name: "3.8.6"
+    
+    stage('1codeclone'){
+        git "https://github.com/jorge1j/maven-web-application"
+    }
+    
+    stage('2test$build'){
+        sh "${mavenHome}/bin/mvn clean package"
+    }
+    stage('3codequality'){
+        sh "${mavenHome}/bin/mvn sonar:sonar"
+    }
+    stage('4uploadArtifact'){
+        sh "${mavenHome}/bin/mvn deploy"
+    }
+    /*
+    stage('5deploy2UAT'){
+        sh "sleep 40"
+        deploy adapters: [tomcat9(credentialsId: 'tomcatcredential', path: '', url: 'https://44.210.117.44')], contextPath: null, war: 'target/*war'                                       
+    */    
+    
+    }
+      stage('Approval'){
+    timeout(time:8, unit: 'HOURS' ) {
+      input message: 'Please verify and approve'
+        
+    }
+    
+    
+    }
