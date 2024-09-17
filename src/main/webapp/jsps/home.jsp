@@ -9,11 +9,12 @@
 </head>
 </head>
 <body>
-<h1 align="center">Welcome to Landmark Technologies.</h1>
-<h2 align="center"> We are supporting the Ebay Black Friday Project.
+<h1 align="center">Don Moen says: Welcome to Landmark Technologies.</h1>
+<h2 align="center"> We are supporting the Ebay Black Friday Project. Chimezie is the Greatest!! Yo know this man!
 	Landmark Technologies is a software development company. 
 	Class26 will run from October 2, 2021.
-	The shout of the King Jesus is in our midst. HE IS OUR SUCCESS ACCESS KEY</h2>
+	The shout of the King Jesus is in our midst. HE IS OUR SUCCESS ACCESS KEY. I just want to thank you lord</h2>
+<h2 align="center">As you give the grace with all that is in my heart, I will sing and praise!</h2>
 <hr>
 <div style="text-align: center;">
 	<span>

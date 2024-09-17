@@ -1,0 +1,20 @@
+pipeline{
+    agent any
+    tools{
+        maven "maven"
+    }
+    stages{
+        stage('clone code'){
+            steps{
+            git "https://github.com/CodedOps/maven-web-application"
+            }
+        }
+        stage('build + UnitTest')
+        {
+            steps{
+                sh "echo 'conduct unit test'"
+                sh "mvn package"
+            }
+        }
+    }
+}
