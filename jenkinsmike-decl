@@ -1,0 +1,53 @@
+pipeline{
+    agent any
+    tools{
+        maven "maven3.8.6"
+    }
+    stages{
+        stage('1 GetCode'){
+            steps{
+            sh "echo ' cloning the latest application server' "
+            git  "https://github.com/Ambronney/maven-web-application"
+        }
+    }
+    stage('2 Test+Build'){
+        steps{
+            sh "echo 'runnin JUnit-test-cases' "
+            sh " echo ' testing must be passed to create artifacts' "
+            sh " mvn clean package"
+            
+        }
+    }
+    /*stage('3CodeQuality'){
+        steps{
+            sh "echo ' Performing code quality analysis' "
+            sh "mvn sonar:sonar"
+        }
+    }
+    */
+    stage('4UploadNexus'){
+    steps{
+        sh "echo ' Uploading artifacts to Nexus' "
+        sh "mvn deploy"
+    }
+    }
+    stage('5deploy2prod'){
+        steps{
+            sh "echo ' application ready for deployment' "
+            deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://54.204.205.127:8080/')], contextPath: null, war: 'target/*war'
+        }
+    }
+    }
+    post{
+        always{
+         emailext body: 'good job', recipientProviders: [buildUser(), previous(), developers(), requestor()], subject: 'Hello All,', to: 'olayanjumbennedict@gmail.com'   
+        }
+        success{
+         emailext body: 'good build', recipientProviders: [buildUser(), previous(), developers(), requestor()], subject: 'Hello All,', to: 'olayanjumbennedict@gmail.com'   
+        }
+        failure{
+         emailext body: 'bad build, failed', recipientProviders: [buildUser(), previous(), developers(), requestor()], subject: 'Hello All,', to: 'olayanjumbennedict@gmail.com'   
+        }
+    }
+    }
+
