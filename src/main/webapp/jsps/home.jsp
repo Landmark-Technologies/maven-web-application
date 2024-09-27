@@ -12,8 +12,9 @@
 <h1 align="center">Welcome to Landmark Technologies.</h1>
 <h2 align="center"> We are supporting the Ebay Black Friday Project.
 	Landmark Technologies is a software development company. 
-	Class26 will run from October 2, 2021.
-	The shout of the King Jesus is in our midst. HE IS OUR SUCCESS ACCESS KEY</h2>
+	Class26 will run from October 30, 2021.
+	The shout of the King Jesus is in Lord. HE IS OUR SUCCESS ACCESS KEY
+	Come let's worship the Lord together</h2>
 <hr>
 <div style="text-align: center;">
 	<span>
@@ -21,7 +22,7 @@
 	</span>
 	<span style="font-weight: bold;">
 		Landmark Technology, 
-		Toronto, Ontario, Canada
+		Houston, Texas and all it environs
 		+1 437 215 2483,
 		mylandmarktech@gmail.com
 		<br>
