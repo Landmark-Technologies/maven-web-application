@@ -1,0 +1,89 @@
+pipeline{
+	agent any 
+	tools {
+		maven 'maven399'
+		//node  'node2.15'
+	}
+	//options {} 
+	//triggers {}
+	stages{ 
+		stage('1CloneCode'){
+			steps{
+              sh "echo 'cloning the latest application version' "
+              git "https://github.com/LandmakTechnology/maven-web-application"				
+			}
+		}
+		stage('2test+build'){
+			steps{
+              sh "echo 'running JUnit-test-cases' "
+              sh "echo 'testing must passed to create artifacts ' "
+              sh "mvn clean package" 				
+			}
+		}
+		/*
+		stage('3CodeQuality'){
+			steps{
+              sh "echo 'Perfoming CodeQualityAnalysis' "
+              sh "echo 'CodeQuality must meet the benchmark before deployment' "
+              sh "mvn sonar:sonar" 				
+			}
+		}
+		stage('4UploadArtifacts'){
+			steps{
+			  sh "echo Uploading Artifacts"
+              //sh "mvn deploy"   				
+			}
+		} 
+		stage('5Deploy2UAT'){
+			steps{
+			  sh "echo deploying to UAT"
+              deploy adapters: [tomcat9(credentialsId: 'tomcatAccess', path: '', url: 'http://54.234.37.143:9077/')], contextPath: null, war: 'target/*war'
+			}
+		}
+		stage('6ManualApproval'){
+			steps{
+              sh "echo 'Please review the application and accept' "
+              timeout(time:600, unit:'MINUTES'){
+              input message: 'Application ready for deployment, Please review and approve'              	
+              }				
+			}
+		}
+
+		stage('7Deploy2Prod'){
+			steps{
+			  sh "echo deploying apps to production/market"
+              deploy adapters: [tomcat9(credentialsId: 'tomcatAccess', path: '', url: 'http://54.234.37.143:9077/')], contextPath: null, war: 'target/*war'
+			}
+
+		}
+*/
+	}
+
+	post{
+		always{
+emailext body: '''Hi Team,
+
+The test, build, and deployment to production was a success.
+
+Regards,
+Landmark TRechnologies''', recipientProviders: [developers(), upstreamDevelopers()], subject: 'success', to: 'mylandmarktech@gmail.com'
+		}
+		success{
+			emailext body: '''Hi Team,
+
+The test, build, and deployment to production was a success.
+
+Regards,
+Landmark TRechnologies''', recipientProviders: [developers(), upstreamDevelopers()], subject: 'success', to: 'mylandmarktech@gmail.com'
+		}
+		failure{
+emailext body: '''Hi Team,
+
+The test, build, and deployment to production was a success.
+
+Regards,
+Landmark TRechnologies''', recipientProviders: [developers(), upstreamDevelopers()], subject: 'success', to: 'mylandmarktech@gmail.com'			
+		}
+	} 
+}
+    
